@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- <link rel="stylesheet" href="main.css"> -->
+
+    <style>
+        a p {
+    text-decoration: none;
+}
+td a {
+    text-decoration: none;
+}
+html {
+    font-size: 10px;
+}
+
+body, html {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    min-width: 0px;
+}
+*:focus {
+    outline: none !important;
+}
+
+* {
+    font-family: Inter;
+    color: var(--black);
+}
+
+:root {
+    --white: #F5F5F5;
+    --gray: #E8E2E2;
+    --purple: #5D3891;
+    --black: #1E1E1E;
+}
+
+#main_content {
+    width: calc(100% - 25px);
+    height: 100%;
+    min-height: 100%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 1280px;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+}
+
+#main_content #banner {
+    display: flex;
+    height: 50px;
+    margin-top: 10px;
+    justify-content: space-between;
+    width: calc(100% - 20px);
+    position: relative;
+    align-items: center;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#main_content #banner h1 {
+    margin: 0px;
+    padding: 0px;
+    font-size: 1.8rem;
+    font-weight: 500;
+    width: 100%;
+}
+#main_content #banner p {
+    margin: 0px;
+    padding: 0px;
+}
+#banner #left {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+#banner #right {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+#banner #right a {
+    cursor: pointer;
+    align-items: center;
+    gap: 5px;
+}
+#search {
+    width: calc(100% - 30px);
+    padding: 0px 15px;
+    min-width: 200px;
+    height: 40px;
+    position: relative;
+    border-radius: 7px;
+    transition: 0.1s;
+    background-color: var(--gray);
+}
+#search input {
+    background-color: transparent;
+    height: 100%;
+    padding: 0px;
+    width: 100%;
+    color: var(--black);
+    font-size: 1.4rem;
+    outline: none;
+    border: 0px;
+}
+#search input::placeholder {
+    color: var(--black);
+}
+#search #shortcut {
+    position: absolute;
+    right: 7px;
+    top: 50%;
+    transform: translateY(-50%);
+    aspect-ratio: 1/1;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    font-weight: 600;
+    background: var(--white);
+    height: calc(100% - 10px);
+}
+#content {
+    width: 100%;
+    min-height: calc(100% - 82.5px - 50px);
+    background-color: var(--gray);
+    border: 0px;
+    border-radius: 8px;
+    transition: 0.2s;
+    position: relative;
+    margin-bottom: 12.5px;
+}
+table {
+    top: 10px;
+    border-spacing:0 5px;
+    border-collapse:separate;
+    width: calc(100% - 30px);
+    position: relative;
+    table-layout:fixed
+    left: 50%;
+    padding: 0px 10px;
+    border-spacing: 0 7px;
+    transform: translateX(-50%);
+}
+table tbody {
+    max-width: 100%;
+}
+#row {
+    padding: 8px 0px 8px 0px;
+}
+#row div {
+    overflow: hidden;
+}
+#files_table #row {
+    border-bottom: 1px solid var(--purple);
+    overflow: visible;
+    text-overflow: ellipsis;
+}
+div.filename {
+    font-size: 1.4rem;
+    width: calc(100% - 40px - 70px);
+}
+div.filesize {
+    font-size: 1.2rem;
+}
+th.filename, td.filename {
+    padding: 0px 16px;
+    min-width: 0px;
+}
+div.filesize {
+    width: 70px; /* Adjust the width as needed */
+    max-width: 70px;
+}
+.download, .download {
+    width: 40px;
+}
+
+button#downloadAll {
+    height: 40px;
+    max-height: 0px;
+    min-width: 30px;
+    border: 0px;
+    padding: 0px;
+    margin: 0px 0px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-left: auto;
+    color: var(--white);
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--purple);
+}
+button#downloadAll p {
+    color: var(--white);
+    font-size: 1.4rem;
+    padding: 0px 15px;
+}
+.download button {
+    height: 30px;
+    min-width: 30px;
+    padding: 5px;
+    border: 0px;
+    border-radius: 8px;
+    margin-left: auto;
+    color: var(--white);
+    cursor: pointer;
+    display: flex;
+    transition: 0.2s;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--purple);
+}
+.download button img {
+    margin-bottom: -2px;
+}
+.download button:hover {
+    background-color: #3b2955;
+}
+.download button:active {
+    transform: scale(0.95);
+}
+.download button p {
+    color: var(--white);
+    font-size: 1.4rem;
+}
+.download a {
+    text-decoration: none;
+}
+.download button img {
+    height: 20px;
+}
+#files_table button {
+    margin-left: auto;
+    height: 30px;
+    min-width: 30px;
+    border: 0px;
+    border-radius: 8px;
+    color: var(--white);
+    white-space: nowrap;
+    cursor: pointer;
+    display: flex;
+    margin-left: auto;
+    overflow: visible;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--purple);
+}
+button p {
+    color: var(--white);
+    font-size: 1.4rem;
+    padding: 0px 0px;
+    margin: 0px;
+}
+
+#checkbox {
+    width: 23px;
+    height: 23px;
+    border: 1.5px solid var(--black);
+    border-radius: 7px;
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+}
+#checkbox #checked:active {
+    transform: scale(0.9);
+}
+#checkbox #checked {
+    transition: 0.1s;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    background-color: var(--black);
+    border-radius: 5px;
+    opacity: 0;
+}
+#checkbox.selected #checked {
+    opacity: 1;
+}
+#checkbox:hover #checked {
+    opacity: 0.5;
+}
+.pc_only {
+    display: none;
+}
+button#downloadAll p {
+    transform: translateY(-100%);
+}
+body.downloadAll button#downloadAll {
+    max-height: 40px;
+    margin: 5px 0px;
+    min-width: 30px;
+    /* width: fit-content; */
+    margin-left: auto;
+}
+button.pc_only {
+    opacity: 0;
+    transition: 0.1s;
+    pointer-events: none;
+}
+body.downloadAll button.pc_only {
+    opacity: 1;
+    pointer-events: all;
+}
+body.downloadAll div.download button{
+    color: var(--purple);
+    border: 1px solid var(--purple);
+    background-color: transparent;
+}
+body.downloadAll div.download button p {
+    color: var(--purple);
+}
+body.downloadAll button#downloadAll p {
+    transform: translateY(0%);
+}
+#table_heading button {
+    opacity: 0;
+    pointer-events: none;
+}
+#table_heading div {
+    font-weight: 700;
+}
+#row {
+    width: calc(100% - 40px);
+    margin: 0px 20px;
+    display: flex;
+    overflow: visible;
+    position: relative;
+    gap: 10px;
+    margin-top: 5px;
+    align-items: center;
+}
+
+#files_table #row * {
+    z-index: 2;
+}
+#row:hover #background {
+    background-color: var(--white);
+}
+#files_table #row:hover {
+    border-bottom: 1px solid var(--white);
+}
+#row #background {
+    width: 100%;
+    height: 100%;
+    padding: 0px 10px;
+    left: -10px;
+    border-radius: 13px;
+    z-index: 1;
+    position: absolute;
+}
+
+#banner #right p {
+    padding: 7px 20px;
+    border: 1px solid var(--purple);
+    border-radius: 7px;
+}
+body.disconnected #banner #right p {
+    border: 1px solid #D04848;
+    color: var(--white);
+    background-color: #D04848;
+}
+body.empty .file_related {
+    display: none;
+}
+body.disconnected #content a {
+    opacity: 0.7;
+    pointer-events: none;
+    cursor: not-allowed;
+} 
+
+
+#no_files {
+    opacity: 0;
+    pointer-events: none;
+    width: 100%;
+    max-width: min(70%, 300px);
+    display: flex;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    gap: 20px;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    align-items: center;
+}
+body.empty #no_files {
+    opacity: 1;
+}
+#no_files p {
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-align: center;
+}
+#no_files svg {
+    width: 100%;
+}
+#alert {
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%) translateY(calc(100% + 30px));
+    max-width: min(80vw, 200px);
+    width: 100%;
+    padding: 10px 15px;
+    z-index: 100;
+    border: 0px;
+    transition: 0.2s;
+    border-radius: 10px;
+    background-color: rgba(93, 56, 145, 0.6);
+}
+#alert.visible {
+    transform: translateX(-50%) translateY(0px);
+}
+#alert p {
+    color: var(--black);
+    font-size: 1.4rem;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+    font-weight: 500;
+}
+@media (max-width: 600px) {
+    body.downloadAll #content {
+        min-height: calc(100% - 82.5px - 50px - 45px);
+    }
+}
+@media (min-width: 450px) {
+    div.filesize, div.filesize {
+        width: 100px; /* Adjust the width as needed */
+        max-width: 100px;
+    }
+}
+.mobile_only {
+    display: block;
+}
+@media (min-width: 600px) {
+    #no_files p {
+        font-size: 1.6rem;
+    }
+    #row {
+        width: calc(100% - 60px);
+        margin: 0px 30px;
+        margin-top: 5px;
+    }
+    #files_table #row:hover {
+        border-radius: 10px;
+        border-bottom: 1px solid var(--white);
+    }
+    #main_content #banner {
+        width: calc(100% - 40px);
+    }
+    .mobile_only {
+        display: none !important;
+    }
+    div.download {
+        min-width: 100px;
+        width: 100px;
+    }
+    div.download a button p {
+        text-decoration: none;
+    }
+    div.download button {
+        width: 100%;
+    }
+    #content {
+        min-height: calc(100% - 82.5px);
+    }
+    div.filesize, div.filesize {
+        max-width: 150px;
+        width: 150px; /* Adjust the width as needed */
+    }
+    .pc_only {
+        display: block;
+    }
+    .mobile_only {
+        display: none;
+    }
+    #search:focus-within {
+        min-width: 250px;
+    }
+}
+#banner #right a {
+    display: none;
+}
+@media (min-width: 900px) {
+    #banner #right a {
+        display: flex;
+    }
+}
+    </style>
+</head>
+<body>
+    <div id="alert">
+        <p id="context">A basic alert</p>
+    </div>
+    <div id="main_content">
+        <div id="banner">
+            <div id="left">
+                <h1>DandyDrop</h1>
+                <div id="search" class="pc_only">
+                    <input type="text" placeholder="Search a file">
+                    <div id="shortcut">/</div>
+                </div>
+            </div>
+            <div id="right">
+                <a onclick="share_dandydrop()"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAEcElEQVR4nO2cP4gdRRzH5zxjExP/kPPu3s73O3fL0xeffwq30NZCBY0RS0VsElQsrKImlRYeKBhQBEECJljaWKiNFhaikNYYI6Jg7I2aEDB/8GS4LQzEN/Pe7vzJm98Htryd+30/82Zmd2dXKUEQBEEQBEEQBEFIAYCDVVXdn6Tx0gHwOslNAH8aYx5I/f8UGT7bQyQkDF8kZBC+SIg04U4K/78SZGIOAMn7SP7uK0Em5gCIhAyg/BLSIxIyQCRkgEjIAJGQASIhA0RCGBaNMXcaY55sr4Q/BPANye9I/kLyDIALPhdncsXsCcma5HMkP/a98p31kCvmlsFgAJKvkvwpZOAi4UoWtdZPkfya5D+xgy/2Bl7TNNsAPAvgx5ShlyhggeQzJH9LHXhx4VdVdTvJL1KHXVz4TdNsI7kB4GJR4bsaVxGo65oAvu0hrEskjwM4QvJlAHu11ve0y9VbxuPxDbY9G6YNNXn4OQgA8HiXNTyA0wDeJvnYaDTa4Wovq/BTCyD5yozLyvMkjxpjHlRKXefbXnbhJxSwAOCtGXr7WQDvklydtkGSjb0dkVX4KQQ0W2v7j6YM/m87Qdd1fdMsbWbZ8xMJWLBDx5Thf0VyPGuD2fb8FAJIHp5ynN/Xpb2se35sAdy6gebb609VVXVvx/by7vkxBZDc47vaAfDp8vLy9rnv+bEE1LW9BvJe5x9TSl1f1NbEkAKarRWP7xXuO3aSjrk5N3n4oQWQ3Jii5/cWvs/29CzCDylgMBjc0a7fnWN+H8OO7+SfVfgBBSy06/dNR/gnu064076ilFX4oQS0D1M2Hcd5AHep0l/S61uAveXr+SRrX5iKrjH6FkByv0f4X4ap5hqkZwGLru0iAC4YY3YHKqdsAcaYpz16/0a4agoX0O7bmdT7/zLG3ByumoIFGGPWPO73vBG2moIFkHzNtexcWVlZCltNuQLsg5afHec6GriUcgVore92ncdsPUAXQggg+ZJj8j09ze6FouhJwCeO8xwOX0m5AhZdj/6MMY9GKKVMAXbHguMcl4bD4c441RQowL6T5TjH8TiVFCoAwCHHBHwkTiXlDkHHHOc4EKeScgW47v/sjVNJuQJOTPr7quMGq7mnhzng10l/v7a2ZuJUUu4vYOKmK631rXEqKfcXMPH1/3H7WpAQSEDXv8+d4PWJgMmIgMSIgMRkL2DeoQhIiwhIjAiYdwH25edJDSwtLd2oCmU4HO503Gg827kRj48h7VGFAuAJh4BTfTTyuUPACZ+PYMxj7wdw0uPtnm5orV90jXMkv7f39UsQMRqNdtie7wq/FfBC5wa11lX7nR2XBDl4RfgXZ/loyFUh+b4EzKk6GID3VF+sr68vA/hDJNBXwJm6rm9TfQLgIRmK6BP+5WAbzdrPAF+WXwL/L3w7V+5XIdFaPyLDEa867AB4WMVgdXV1F8k3fd50L2S184ExZkXFxi6z7FoXwGcAfiB5LnUgDH+cs7W2NT/f21JTEARBEARBEARVCv8CsK2vahLjyZkAAAAASUVORK5CYII="
+                    " width="17" height="17" alt="First SVG">
+                    Share DandyDrop</a>
+                <p>connected</p>
+            </div>
+        </div>
+        <div id="search" class="mobile_only">
+            <input type="text" placeholder="Search a file">
+            <div id="shortcut">/</div>
+        </div>
+        <button id="downloadAll" onclick="downloadAll()" type="button" class="mobile_only">
+            <p>Download All</p>
+        </button>
+        <iframe id="my_iframe" style="display:none;"></iframe>
+        <div id="content">
+            <div id="no_files">
+                <svg viewBox="0 0 333 348" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M128.622 347.926C199.658 347.926 257.245 337.753 257.245 325.204C257.245 312.654 199.658 302.481 128.622 302.481C57.5861 302.481 0 312.654 0 325.204C0 337.753 57.5861 347.926 128.622 347.926Z" fill="#5D3891"/>
+                    <path d="M206.796 251.408C276.221 251.408 332.5 195.128 332.5 125.704C332.5 56.2795 276.221 0 206.796 0C137.372 0 81.0925 56.2795 81.0925 125.704C81.0925 195.128 137.372 251.408 206.796 251.408Z" fill="#5D3891"/>
+                    <path opacity="0.05" d="M206.796 229.476C264.108 229.476 310.569 183.016 310.569 125.704C310.569 68.3918 264.108 21.9313 206.796 21.9313C149.484 21.9313 103.024 68.3918 103.024 125.704C103.024 183.016 149.484 229.476 206.796 229.476Z" fill="black"/>
+                    <path opacity="0.05" d="M206.796 210.754C253.768 210.754 291.847 172.676 291.847 125.704C291.847 78.7316 253.768 40.6531 206.796 40.6531C159.824 40.6531 121.746 78.7316 121.746 125.704C121.746 172.676 159.824 210.754 206.796 210.754Z" fill="black"/>
+                    <path opacity="0.05" d="M206.796 186.683C240.474 186.683 267.776 159.382 267.776 125.704C267.776 92.0256 240.474 64.7241 206.796 64.7241C173.118 64.7241 145.817 92.0256 145.817 125.704C145.817 159.382 173.118 186.683 206.796 186.683Z" fill="black"/>
+                    <path d="M82.2057 136.953C82.2057 136.953 72.3229 164.772 76.7153 174.655C81.1077 184.537 88.0622 194.054 88.0622 194.054C88.0622 194.054 85.5 138.784 82.2057 136.953Z" fill="#D0CDE1"/>
+                    <path opacity="0.1" d="M82.2057 136.953C82.2057 136.953 72.3229 164.772 76.7153 174.655C81.1077 184.537 88.0622 194.054 88.0622 194.054C88.0622 194.054 85.5 138.784 82.2057 136.953Z" fill="black"/>
+                    <path d="M89.1603 201.375C89.1603 201.375 88.4283 208.329 88.0622 208.695C87.6962 209.061 88.4283 209.794 88.0622 210.892C87.6962 211.99 87.3302 213.454 88.0622 213.82C88.7943 214.186 84.0359 246.397 84.0359 246.397C84.0359 246.397 72.3229 261.77 77.0813 285.928L78.5454 310.452C78.5454 310.452 89.8924 311.184 89.8924 307.158C89.8924 307.158 89.1603 302.399 89.1603 300.203C89.1603 298.007 90.9905 298.007 89.8924 296.909C88.7943 295.811 88.7943 295.079 88.7943 295.079C88.7943 295.079 90.6245 293.615 90.2584 293.249C89.8924 292.883 93.5527 266.894 93.5527 266.894C93.5527 266.894 97.5791 262.868 97.5791 260.672V258.476C97.5791 258.476 99.4092 253.717 99.4092 253.351C99.4092 252.985 109.292 230.657 109.292 230.657L113.318 246.763L117.711 269.823C117.711 269.823 119.907 290.686 124.299 298.739C124.299 298.739 131.986 325.093 131.986 324.361C131.986 323.629 144.797 321.799 144.431 318.505C144.065 315.21 136.744 269.091 136.744 269.091L138.575 200.643L89.1603 201.375Z" fill="#2F2E41"/>
+                    <path d="M79.2776 308.622C79.2776 308.622 69.3948 328.022 75.9833 328.754C82.5719 329.486 85.1341 329.486 88.0623 326.557C89.6632 324.957 92.9051 322.809 95.5152 321.19C97.0618 320.247 98.3111 318.887 99.12 317.266C99.9289 315.645 100.265 313.829 100.088 312.026C99.8954 310.235 99.2263 308.759 97.5792 308.622C93.1868 308.256 88.0623 304.23 88.0623 304.23L79.2776 308.622Z" fill="#2F2E41"/>
+                    <path d="M133.816 322.897C133.816 322.897 123.933 342.297 130.522 343.029C137.11 343.761 139.673 343.761 142.601 340.833C144.202 339.232 147.444 337.084 150.054 335.466C151.6 334.522 152.85 333.162 153.659 331.541C154.467 329.92 154.803 328.104 154.627 326.301C154.434 324.51 153.765 323.034 152.118 322.897C147.725 322.531 142.601 318.505 142.601 318.505L133.816 322.897Z" fill="#2F2E41"/>
+                    <path d="M123.371 105.206C131.869 105.206 138.758 98.3176 138.758 89.8198C138.758 81.322 131.869 74.4332 123.371 74.4332C114.873 74.4332 107.984 81.322 107.984 89.8198C107.984 98.3176 114.873 105.206 123.371 105.206Z" fill="#FFB8B8"/>
+                    <path d="M113.48 94.8754C113.48 94.8754 102.489 115.098 101.61 115.098C100.731 115.098 121.393 121.692 121.393 121.692C121.393 121.692 127.108 102.349 127.987 100.59L113.48 94.8754Z" fill="#FFB8B8"/>
+                    <path d="M130.339 117.005C130.339 117.005 108.377 104.926 106.181 105.292C103.985 105.658 80.5586 126.155 80.9247 134.574C81.2907 142.993 84.2189 156.902 84.2189 156.902C84.2189 156.902 85.317 195.701 87.5132 196.067C89.7094 196.433 87.1472 203.022 87.8792 203.022C88.6113 203.022 139.124 203.022 139.49 201.924C139.856 200.826 130.339 117.005 130.339 117.005Z" fill="#D0CDE1"/>
+                    <path d="M142.601 203.937C142.601 203.937 149.555 225.167 143.699 224.435C137.842 223.703 135.28 206.133 135.28 206.133L142.601 203.937Z" fill="#FFB8B8"/>
+                    <path d="M123.933 115.724C123.933 115.724 110.39 118.652 112.586 136.953C114.783 155.255 118.809 173.556 118.809 173.556L132.352 203.205L133.816 208.695L143.699 206.133L136.378 163.674C136.378 163.674 133.816 118.286 130.522 116.822C128.444 115.936 126.186 115.56 123.933 115.724Z" fill="#D0CDE1"/>
+                    <path opacity="0.1" d="M115.698 173.008L132.535 203.022L118.349 171.395L115.698 173.008Z" fill="black"/>
+                    <path d="M138.689 85.2892L138.74 84.1134L141.079 84.6956C141.054 84.3181 140.948 83.9506 140.767 83.6184C140.586 83.2862 140.335 82.9972 140.031 82.7714L142.523 82.6321C140.432 79.6612 137.761 77.1448 134.671 75.235C131.58 73.3252 128.135 72.0616 124.543 71.5204C119.154 70.7393 113.153 71.8696 109.458 75.8691C107.665 77.8091 106.539 80.2762 105.738 82.793C104.262 87.4285 103.961 92.9543 107.038 96.7223C110.166 100.552 115.628 101.302 120.549 101.776C122.281 101.943 124.096 102.098 125.7 101.426C125.879 99.5855 125.643 97.7283 125.011 95.9906C124.747 95.4527 124.621 94.8578 124.644 94.2593C124.863 92.7952 126.816 92.4264 128.283 92.6242C129.75 92.822 131.514 93.1246 132.478 92.0011C133.142 91.2273 133.103 90.1004 133.191 89.0844C133.43 86.3187 138.664 85.869 138.689 85.2892Z" fill="#2F2E41"/>
+                </svg>
+                <p>Currently, no files are being shared.</p>
+            </div>
+            <div id="table_heading" class="file_related">
+                <div id="row">
+                    <div class="filename">File Name</div>
+                    <div class="filesize">File Size</div>
+                    <div class="download">
+                        <a href="/file/${item.id}" target="_BLANK">
+                            <button type="button">
+                                <img src="data:image/svg+xml,%3Csvg%20width%3D%2217%22%20height%3D%2217%22%20viewBox%3D%220%200%2017%2017%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Crect%20width%3D%2217%22%20height%3D%2217%22%20fill%3D%22url(%23pattern0)%22%2F%3E%3Cdefs%3E%3Cpattern%20id%3D%22pattern0%22%20patternContentUnits%3D%22objectBoundingBox%22%20width%3D%221%22%20height%3D%221%22%3E%3Cuse%20xlink%3Ahref%3D%22%23image0_8_180%22%20transform%3D%22scale(0.0104167)%22%2F%3E%3C%2Fpattern%3E%3Cimage%20id%3D%22image0_8_180%22%20width%3D%2296%22%20height%3D%2296%22%20xlink%3Ahref%3D%22data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAADm0l...%22%2F%3E%3C%2Fdefs%3E%3C%2Fsvg%3E" alt="Your Image Alt Text">
+                                <p class="pc_only">Download</p>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="files_table" class="file_related">
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var selected = []
+
+        
+
+        
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "/") {
+                e.preventDefault();
+                // Focus the input element with id "search" inside the element with class "pc_only"
+                const searchInput = document.querySelector("#search.pc_only input");
+                
+                // Check if the input element exists before focusing
+                if (searchInput) {
+                    searchInput.focus();
+                }
+            }
+        });
+
+        const updateContainer = document.getElementById('updateContainer');
+
+        function fetchData() {
+            fetch('/getfiles') 
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Network response was not ok, status: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    showFiles(data)
+                    document.querySelector("#banner #right p").innerHTML = "connected"
+                    document.body.classList.remove("disconnected")
+                })
+                .catch(error => {
+                    document.querySelector("#banner #right p").innerHTML = "disconnected"
+                    document.body.classList.add("disconnected")
+                    console.error('Error occurred:', error);
+                });
+        }
+
+
+
+        var latest_data = ''
+
+        function showFiles(jsonArray) {
+            const tableBody = document.getElementById('files_table'); // Replace with the actual ID of your table body
+            if (latest_data == jsonArray) {
+                return
+            }
+
+            if(jsonArray == '[]') {
+                document.body.classList.add("empty")
+            } else {
+                document.body.classList.remove("empty")
+            }
+
+            latest_data = jsonArray
+
+            const htmlString = JSON.parse(jsonArray).map(item => `
+                    <div id="row" class="${item.name}">
+                        <div id="background"></div>
+                        <div class="filename">${item.name}</div>
+                        <div class="filesize">${getReadableFilesize(item.filesize)}</div>
+                        <div class="download">
+                            <a href="/file/${item.id}" target="_BLANK">
+                                <button type="button">
+                                    <img class="mobile_only" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAADm0lEQVR4nO2cyW7UQBCGW2LfufIW7CcEHFgegjM8ACBxyWHYQiTeIOdcIxQWRQmbgORB2E4ZZg6u31JOhQo6kjXYM8OM7e5M/59USqTxUlWf3XbicTtHCCGE7DJE5BSAOxb2e+h8kgLARQB9AOqjB+BC6LySQUQ2C83/EyKyETqvZBCR7RIB26HzSgYMNH8nQueVDKAACkga8AyggKQBzwAKSBrwDKCApAHPAApIGvAMoICkAc+AclR1X5ZlV/1Tqgd1RJ7nlyYVYOvWlYfVZLWp6l4XG/1+/ySAZ/7JlNYcnUkF2LoN5GM1zvd6vRMuBkTktIh8baBQjVTAzgOgn8EfgwI4LyJosPkaqwAvwTjrQg07IvKj4eZrzAK8hG/dbvd4a40vFLfQQvM1dgE+nri273ZGXHDXADz3kqaKLMuuTSrA1q0jB1/L2pB6f7V6d+RvNUuTybLsVtP7x5gC6sZqq9p3nueXXVv4b6SVHvkt7V9DCPD7Xq+4Ftx2bSEicxVNmE9AwHyFgLk29j/q4tZJQEAnZO1RJAEKoADwDACHIA5BmL1rgIjczLLsnv2s6yI8zjZ3y/Wv0SQALA3c2i2r6oFJBdi6to2B5ZamzHE2BYjIzYptvhmUMI4AWwfA67Llsiy7HlPtUSQhIverGmuNLEoYJUBV9wN4VbVcnud3Y6o9iiRE5MYQATYcvbTGjhJgy9iyw7ZV9g++kLVHk4T8O14PSljxR3fp5775KyO2sRxj7VEkoaoHAayOaOCLST7zsWr7iLH2aJLQv0d46cVzylhX1UMx1x5NEjrkDiZk85MRYFjDALydtvki8klVj7iaSEZAQcK7KZr/uc7mJyfAUNXDAN5P2PyjrmaSEzCJBBH50kTzkxVQkPBhjOZvNNX8pAWMI8Gav7W1dcw1SNICChI+ljR/s+nmG8kLMGyIAbBo30v1301dbHLYKUIBBVR1j4VrEQoIDAUEhgICQwGBoYDAUEBgKCAwFBAYCghMFAJCv6ARklhe0Kh6RWndzTiI4RWl0C/phSKal/TGeE3VjpJHdU2UIYHDaqk68n10W5/EA8DT/3lGO+Px0LWNzRYiIt8jKF5Dhk1U0saDoFIAnLPZKhJuvnHGhcRmC7EJK1I88iV083ew2UJswgqbMyF0Y9B8dAE8DjbsDMPuBPI8v2L3xP4vxoUZiY7VZLeaUU5ZRgghhBBCCCGEEEIIIYQQQgghhBDiYuM35yX2xIQyDhMAAAAASUVORK5CYII="
+                                    " width="17" height="17" alt="First SVG">                                    <p class="pc_only">Download</p>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+            `).join('')
+
+            tableBody.innerHTML = htmlString;
+        }
+
+        const search_input = document.querySelectorAll("#search input")
+
+        console.log(search_input);
+
+        for(var x = 0;x < search_input.length;x++) {
+            let input = search_input[x]
+
+            input.addEventListener('input', () => {
+                let text = input.value
+                const file_rows = document.querySelectorAll("#files_table #row")
+
+                for(var y = 0;y < file_rows.length;y++) {
+                    row_filename = file_rows[y].className
+                    
+                    console.log(text);
+
+                    if (row_filename.toLowerCase().indexOf(text.toLowerCase()) !== -1) {
+                        file_rows[y].style.display = "flex"
+                    } else {
+                        file_rows[y].style.display = "none"
+                    }
+                }
+            })
+        }
+
+        // const search_input_mobile = document.querySelector("#search.mobile_only input")
+        
+        // mobile_input = search_input_mobile
+
+        // mobile_input.addEventListener('input', () => {
+        //     text = mobile_input.value
+        //     const file_rows = document.querySelectorAll("#files_table #row")
+
+        //     for(var y = 0;y < file_rows.length;y++) {
+        //         row_filename = file_rows[y].className
+                
+        //         console.log(row_filename.indexOf(text));
+
+        //         if (row_filename.toLowerCase().indexOf(text.toLowerCase()) !== -1) {
+        //             file_rows[y].style.display = "flex"
+        //         } else {
+        //             file_rows[y].style.display = "none"
+        //         }
+        //     }
+        // })
+
+        function getReadableFilesize(filesize) {
+            if (filesize <= 0) {
+                return "0 B";
+            }
+
+            const units = ["B", "KB", "MB", "GB", "TB"];
+            const digitGroups = Math.floor(Math.log10(filesize) / Math.log10(1024));
+
+            return (filesize / Math.pow(1024, digitGroups)).toFixed(1) + " " + units[digitGroups];
+        }
+
+        // Polling interval (e.g., every 5 seconds)
+        const pollingInterval = 5000;
+
+        // Periodically fetch data using setInterval
+        const pollingIntervalId = setInterval(fetchData, pollingInterval);
+
+        fetchData()
+
+        async function share_dandydrop() {
+            try {
+                await navigator.clipboard.writeText("https://github.com/ProfoundPenguin/DandyDrop");
+                show_alert('A link as been saved to your clipboard')
+            } catch (err) {
+                show_alert('Something went wrong (Browser capability issue)')
+            }
+        }
+
+        function show_alert(context) {
+            const alert_box = document.querySelector("#alert")
+            const p = alert_box.querySelector("p")
+
+            p.innerHTML = context
+            alert_box.classList.add("visible")
+
+            setTimeout(()=> {
+                alert_box.classList.remove("visible")
+            }, 3000)
+        }
+    </script>
+
+</body>
+</html>

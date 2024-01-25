@@ -1,0 +1,35 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Outer shape with rounded corners and white stroke -->
+    <item>
+        <shape>
+            <solid android:color="@color/light_black" />
+            <corners
+                android:topLeftRadius="7dp"
+                android:topRightRadius="7dp"
+                android:bottomLeftRadius="7dp"
+                android:bottomRightRadius="7dp"/>
+            <stroke
+                android:width="2px"
+                android:color="@android:color/white"/>
+        </shape>
+    </item>
+
+    <!-- Inner shape with white color and 20sp margin -->
+    <item
+        android:left="4sp"
+        android:right="4sp"
+        android:top="4sp"
+        android:bottom="4sp">
+
+        <shape>
+            <corners
+                android:topLeftRadius="4dp"
+                android:topRightRadius="4dp"
+                android:bottomLeftRadius="4dp"
+                android:bottomRightRadius="4dp"/>
+            <solid android:color="@android:color/white" />
+        </shape>
+    </item>
+
+</layer-list>

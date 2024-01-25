@@ -1,0 +1,69 @@
+<!-- Replace this with your desired layout for each item -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingVertical="10dp"
+    android:paddingHorizontal="0dp"
+    android:background="@drawable/file_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="35"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/imageViewCheckbox"
+            android:layout_width="23sp"
+            android:layout_height="23sp"
+            android:layout_marginRight="15sp"
+            android:contentDescription="Checkbox"
+            android:src="@drawable/ic_checkbox_unchecked" />
+
+        <TextView
+            android:id="@+id/textFileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="File Name"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="65"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/filesize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="File Name"
+            android:paddingLeft="15sp"
+            android:textColor="#7B7B7B"
+            android:textSize="14sp" />
+
+        <ImageButton
+            android:id="@+id/deleteBtn"
+            android:layout_width="29sp"
+            android:layout_height="29sp"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/delete"
+            android:background="@drawable/rounder_delete_button"/>
+    </LinearLayout>
+
+
+    <!-- Add other views for file data as needed -->
+
+</LinearLayout>

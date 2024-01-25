@@ -1,0 +1,377 @@
+html {
+    font-size: 10px;
+}
+
+body, html {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+*:focus {
+    outline: none !important;
+}
+
+* {
+    font-family: Inter;
+    color: var(--black);
+}
+a p {
+    text-decoration: none;
+}
+:root {
+    --white: #F5F5F5;
+    --gray: #E8E2E2;
+    --purple: #5D3891;
+    --black: #1E1E1E;
+}
+
+#main_content {
+    width: calc(100% - 25px);
+    height: 100%;
+    min-height: 100%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 1280px;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+}
+
+#main_content #banner {
+    display: flex;
+    height: 50px;
+    margin-top: 10px;
+    justify-content: space-between;
+    width: calc(100% - 20px);
+    position: relative;
+    align-items: center;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#main_content #banner h1 {
+    margin: 0px;
+    padding: 0px;
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+#main_content #banner p {
+    margin: 0px;
+    padding: 0px;
+}
+#banner #left {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+#banner #right {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+#banner #right a {
+    align-items: center;
+    gap: 5px;
+}
+#search {
+    width: calc(100% - 30px);
+    padding: 0px 15px;
+    min-width: 200px;
+    height: 40px;
+    position: relative;
+    border-radius: 7px;
+    transition: 0.1s;
+    background-color: var(--gray);
+}
+#search input {
+    background-color: transparent;
+    height: 100%;
+    padding: 0px;
+    color: var(--black);
+    font-size: 1.4rem;
+    outline: none;
+    border: 0px;
+}
+#search input::placeholder {
+    color: var(--black);
+}
+#search #shortcut {
+    position: absolute;
+    right: 7px;
+    top: 50%;
+    transform: translateY(-50%);
+    aspect-ratio: 1/1;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    font-weight: 600;
+    background: var(--white);
+    height: calc(100% - 10px);
+}
+#content {
+    width: 100%;
+    min-height: calc(100% - 82.5px - 50px);
+    background-color: var(--gray);
+    border: 0px;
+    border-radius: 8px;
+    transition: 0.2s;
+    margin-bottom: 12.5px;
+}
+table {
+    top: 10px;
+    border-spacing:0 5px;
+    border-collapse:separate;
+    width: calc(100% - 30px);
+    position: relative;
+    left: 50%;
+    border-spacing: 0 7px;
+    transform: translateX(-50%);
+}
+tbody tr:hover td {
+    background-color: var(--white);
+    border-bottom: 1px solid var(--white);
+}
+th {
+    font-size: 1.4rem;
+}
+tr {
+    padding-top: 8px;
+}
+th, td {
+    text-align: left;
+    margin-top: 5px;
+    padding: 8px 0px 8px 0px;
+}
+td {
+    border-bottom: 1px solid var(--purple);
+}
+td.filename {
+    font-size: 1.4rem;
+}
+td.filesize {
+    font-size: 1.2rem;
+}
+th.checkbox, td.checkbox {
+    padding-left: 10px;
+    width: 0px; /* Adjust the width as needed */
+}
+tbody tr:hover td.checkbox {
+    border-bottom-left-radius: 14px;
+    border-top-left-radius: 14px;
+}
+th.filename, td.filename {
+    padding: 0px 16px;
+    min-width: 0px;
+}
+th.filesize, td.filesize {
+    width: 70px; /* Adjust the width as needed */
+}
+th.download, td.download {
+    padding-right: 10px;
+    width: 0px; /* Adjust the width as needed */
+}
+tbody tr:hover td.download {
+    border-bottom-right-radius: 14px;
+    border-top-right-radius: 14px;
+}
+button#downloadAll {
+    height: 40px;
+    max-height: 0px;
+    min-width: 30px;
+    border: 0px;
+    padding: 0px;
+    margin: 0px 0px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-left: auto;
+    color: var(--white);
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--purple);
+}
+button#downloadAll p {
+    color: var(--white);
+    font-size: 1.4rem;
+    padding: 0px 15px;
+}
+td.download button {
+    height: 30px;
+    min-width: 30px;
+    padding: 5px;
+    border: 0px;
+    border-radius: 8px;
+    margin-left: auto;
+    color: var(--white);
+    cursor: pointer;
+    display: flex;
+    transition: 0.2s;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--purple);
+}
+td.download button:hover {
+    background-color: #3b2955;
+}
+td.download button:active {
+    transform: scale(0.95);
+}
+td.download button p {
+    color: var(--white);
+    font-size: 1.4rem;
+    padding: 0px 15px;
+}
+td.download button img {
+    height: 20px;
+}
+th button {
+    margin-left: auto;
+    height: 30px;
+    min-width: 150px;
+    padding: 5px 15px;
+    border: 0px;
+    border-radius: 8px;
+    color: var(--white);
+    white-space: nowrap;
+    cursor: pointer;
+    display: flex;
+    margin-left: auto;
+    overflow: visible;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--purple);
+}
+th button p {
+    color: var(--white);
+    font-size: 1.4rem;
+    padding: 0px 0px;
+    margin: 0px;
+}
+
+#checkbox {
+    width: 23px;
+    height: 23px;
+    border: 1.5px solid var(--black);
+    border-radius: 7px;
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+}
+#checkbox #checked:active {
+    transform: scale(0.9);
+}
+#checkbox #checked {
+    transition: 0.1s;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    background-color: var(--black);
+    border-radius: 5px;
+    opacity: 0;
+}
+tr #checkbox.selected #checked {
+    opacity: 1;
+}
+#checkbox:hover #checked {
+    opacity: 0.5;
+}
+.pc_only {
+    display: none;
+}
+button#downloadAll p {
+    transform: translateY(-100%);
+}
+body.downloadAll button#downloadAll {
+    max-height: 40px;
+    margin: 5px 0px;
+    min-width: 30px;
+    /* width: fit-content; */
+    margin-left: auto;
+}
+button.pc_only {
+    opacity: 0;
+    transition: 0.1s;
+    pointer-events: none;
+}
+body.downloadAll button.pc_only {
+    opacity: 1;
+    pointer-events: all;
+}
+body.downloadAll td.download button{
+    color: var(--purple);
+    border: 1px solid var(--purple);
+    background-color: transparent;
+}
+body.downloadAll td.download button p {
+    color: var(--purple);
+}
+body.downloadAll button#downloadAll p {
+    transform: translateY(0%);
+}
+body.downloadAll #content {
+    min-height: calc(100% - 82.5px - 50px - 45px);
+}
+@media (min-width: 450px) {
+    th.filesize, td.filesize {
+        width: 100px; /* Adjust the width as needed */
+    }
+}
+@media (min-width: 600px) {
+    #banner {
+        width: calc(100% - 30px);
+    }
+    .mobile_only {
+        display: none !important;
+    }
+    th.download {
+        min-width: 100px;
+    }
+    #content {
+        min-height: calc(100% - 82.5px);
+    }
+    th.filesize, td.filesize {
+        width: 150px; /* Adjust the width as needed */
+    }
+    .pc_only {
+        display: block;
+    }
+    .mobile_only {
+        display: none;
+    }
+    #search:focus-within {
+        min-width: 250px;
+    }
+}
+#banner #right a {
+    display: none;
+}
+#banner #right p {
+    padding: 7px 20px;
+    border: 1px solid var(--purple);
+    border-radius: 7px;
+}
+body.disconnected #banner #right p {
+    border: 1px solid #D04848;
+    color: var(--white);
+    background-color: #D04848;
+}
+@media (min-width: 900px) {
+    #banner #right a {
+        display: flex;
+    }
+}
