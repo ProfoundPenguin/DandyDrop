@@ -199,6 +199,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         Intent intent = getIntent();
         handleIntent(intent);
 
+
         if (standardLunch) {
             setupMainPage();
         } else {
@@ -248,6 +249,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     }
 
     private void setupSharingPage(ArrayList<FileData> fileDataList, boolean addingFiles) {
+        System.out.println(addingFiles);
         if (!addingFiles) {
             setContentView(R.layout.sharing);
         }
@@ -514,6 +516,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
                 }
             }
 
+            setupSharingPage(fileDataList, false);
 
         } else if (Intent.ACTION_SEND_MULTIPLE.equals(action) && type != null) {
             ArrayList<Uri> fileUriList = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
@@ -539,11 +542,12 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
                     }
                 }
             }
+
+            setupSharingPage(fileDataList, false);
         } else {
             standardLunch = true;
         }
 
-        setupSharingPage(fileDataList, false);
     }
 
 
