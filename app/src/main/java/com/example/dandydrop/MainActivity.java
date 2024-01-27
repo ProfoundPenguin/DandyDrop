@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
             @Override
             public void onClick(View widget) {
                 // Open the link in a browser
-                String url = "http://www.google.com";
+                String url = "https://github.com/ProfoundPenguin/DandyDrop/issues/";
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(intent);
             }
